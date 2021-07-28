@@ -6,9 +6,7 @@ function NewMeetup() {
     console.log(meetupData);
   }
 
-  return (
-      <NewMeetupForm onAddMeetup={addMeetupHandler} />;
-  );
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
 }
 
 export default NewMeetup;
