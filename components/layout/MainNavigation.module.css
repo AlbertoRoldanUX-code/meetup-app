@@ -37,3 +37,21 @@
 .header a.active {
   color: white;
 }
+
+@media only screen and (max-width: 600px) {
+  .header {
+    padding: 0 3%;
+  }
+
+  .header li {
+    margin-left: 0;
+    margin: 0 10px;
+  }
+  .header a {
+    font-size: 1rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+}

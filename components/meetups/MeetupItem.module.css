@@ -44,3 +44,18 @@
 .actions button:active {
   background-color: #ffe2ed;
 }
+
+@media only screen and (max-width: 600px) {
+  .actions {
+    padding: 0.5rem 1rem 3rem;
+    text-align: center;
+  }
+
+  .content h3 {
+    margin: 0.5rem;
+  }
+
+  .image {
+    height: 8rem;
+  }
+}
