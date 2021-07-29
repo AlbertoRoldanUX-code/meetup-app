@@ -34,12 +34,36 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-function Homepage() {
+// const fetchData = async function () {
+//   try {
+//     const res = await fetch(
+//       'https://meetup-app-5233f-default-rtdb.europe-west1.firebasedatabase.app/meetups.json'
+//     );
+//     console.log(res);
+//     const data = await res.json();
+//     console.log(data);
+//     setMeetups(data);
+//     if (!res.ok) throw new Error('Something went wrongs');
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+function Homepage(props) {
   return (
     <div>
-      <MeetupList meetups={DUMMY_MEETUPS} />
+      <MeetupList meetups={props.meetups} />
     </div>
   );
+}
+
+export async function getStaticProps() {
+  // fetchData();
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
 }
 
 export default Homepage;
