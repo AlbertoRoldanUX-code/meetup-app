@@ -1,4 +1,5 @@
 import MeetupDetail from '../../components/meetups/MeetupDetail';
+import { MongoClient } from 'mongodb';
 
 function meetupId() {
   return (
@@ -12,31 +13,27 @@ function meetupId() {
 }
 
 export async function getStaticPaths() {
+  const client = await MongoClient.connect(
+    process.env.REACT_APP_MONGODB_API_KEY
+  );
+
+  const db = client.db();
+
+  const meetupsCollection = db.collection('meetups');
+
+  const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
   return {
     fallback: false,
-    paths: [
-      {
-        params: {
-          meetupId: 'm1',
-        },
-      },
-      {
-        params: {
-          meetupId: 'm2',
-        },
-      },
-      {
-        params: {
-          meetupId: 'm3',
-        },
-      },
-    ],
+
+    paths: meetups.map((item) => {
+      params: {
+        meetupId: item._id.toString();
+      }
+    }),
   };
 }
 
 export async function getStaticProps(context) {
-  //Fetch data for a single meetup
-
   const meetupId = context.params.meetupId;
 
   return {
